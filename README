@@ -1,0 +1,30 @@
+- What's envlint?
+<envlint> is a assistant tool that help people make sure specified tool work well on their own machine.
+
+- How to build?
+
+You can enter `make help` for usage of Makefile. If envlint will run on machine without libcjson(cJSON),
+plese execute Makefile via command `make HAVE_CJSON=0`, or build it with command `make HAVE_CJSON=1`.
+
+- How to install?
+
+Execute Makefile via command `make install` after building. You can also install envlint via a RPM package.
+
+- How to use?
+
+Execute command `envlint --help` for all usages. Envlint needs a config file with json format to define
+all items which will be checked. Config file records a json object array, envlint will check in order.
+User need fill with some values, including:
+    - name: Name of check item.(you can fill it with name of utility)
+    - command: Judgement command, envlint will verify via exit code of the command.
+    - force: The value must be "yes" or "no", envlint will abort checking when its value is "yes".
+    - return: You can define return content when pass checking instead of default string "yes".
+    - feature: This option is not necessary at anytime. If you want to check some features of the item, such as
+        command option supporting, you can fill the sub-key <check> with string "yes". Then write a array 
+        contains every feature. Otherwise, please fill key <check> whit string "no".
+You can refer to example files under conf directory.
+
+- Who write envlint?
+
+wlf<wlf@zhishan-iot.tk>
+

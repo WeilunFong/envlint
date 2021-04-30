@@ -1,0 +1,507 @@
+{
+    "items" : [
+        {
+            "name": "make",
+            "command": "make --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "ninja",
+            "command": "ninja-build --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "cmake",
+            "command": "cmake --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "ccache",
+            "command": "ccache --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "devtoolset-7-toolchain-config",
+            "command": "test -d /opt/rh/centos/7-generic-x86_64",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "cpp",
+            "command": "cpp --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "gcc",
+            "command": "gcc -dumpversion",
+            "force": "yes",
+            "return": "gcc -dumpversion",
+            "feature": {
+                "check": "yes",
+                "items": [
+                    {"name": "-fsanitize=address", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -fsanitize=address test.c -o test && rm -f test*", "force": "no"},
+                    {"name": "-fsanitize-recover=all", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -fsanitize=address -fsanitize-recover=all test.c -o test && rm -f test*", "force": "no"},
+                    {"name": "-fsanitize-recover=address", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -fsanitize=address -fsanitize-recover=address test.c -o test && rm -f test*", "force": "no"},
+                    {"name": "-std=c11", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -std=c11 test.c -o test && rm -f test*", "force": "yes"},
+                    {"name": "-m32", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -m32 test.c -o test && rm -f test*", "force": "yes"},
+                    {"name": "-m64", "command": "echo \"int main(void) { return 0; }\" > test.c; gcc -m64 test.c -o test && rm -f test*", "force": "yes"}
+                ]
+            }
+        },
+        {
+            "name": "g++",
+            "command": "g++ -dumpversion",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "yes",
+                "items" : [
+                    {"name": "-std=c++11", "command": "echo \"int main(void) { return 0; }\" > test.cpp; g++ -std=c++11 test.cpp -o test && rm -f test*", "force": "yes"}
+                ]
+            }
+        },
+        {
+            "name": "gdb",
+            "command": "gdb --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "ld",
+            "command": "ld --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "protobuffer",
+            "command": "protoc --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "protobuffer-c",
+            "command": "protoc-c --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "cppcheck",
+            "command": "cppcheck --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }   
+        },
+        {
+            "name": "coverity",
+            "command": "which cov-help",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "yes",
+                "items": [
+                    {"name": "cov-build", "command": "which cov-build", "force": "no"},
+                    {"name": "cov-analyze", "command": "which cov-analyze", "force": "no"},
+                    {"name": "cov-manage-emit", "command": "which cov-manage-emit", "force": "no"},
+                    {"name": "cov-commit-defects", "command": "which cov-commit-defects", "force": "no"}
+                ]
+            }   
+        },
+        {
+            "name": "lcov",
+            "command": "lcov --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }   
+        },
+        {
+            "name": "pkg-config",
+            "command": "pkg-config --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "grpc",
+            "command": "pkg-config grpc --exists",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libcrypt",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lcrypt -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libdl",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -ldl -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libm",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lm -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libnuma",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lnuma -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libpam",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lpam -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libpcap",
+            "command": "pcap-config --libs",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libprotobuf",
+            "command": "pkg-config protobuf --exists",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libprotobuf-c",
+            "command": "pkg-config libprotobuf-c --exists",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libresolv",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lresolv -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "librt",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lrt -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libxml2",
+            "command": "xml2-config --version",
+            "force": "yes",
+            "return": "xml2-config --version",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "libutil",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -lutil -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "openssl",
+            "command": "pkg-config openssl --exists",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "pthread",
+            "command": "echo \"int main(void) { return 0; }\" > test.c && gcc test.c -pthread -o test && rm -f test*",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "zlib",
+            "command": "pkg-config zlib --exists",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "patch",
+            "command": "patch --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }   
+        },
+        {
+            "name": "git",
+            "command": "git --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "svn",
+            "command": "svn --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "vim",
+            "command": "vim --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "awk",
+            "command": "awk --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "jq",
+            "command": "jq --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "sed",
+            "command": "sed --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "tee",
+            "command": "tee --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "tr",
+            "command": "tr --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "tree",
+            "command": "tree -version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "curl",
+            "command": "curl --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "ifconfig",
+            "command": "ifconfig --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "netstat",
+            "command": "netstat --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "telnet",
+            "command": "which telnet",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "wget",
+            "command": "wget --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "openjdk",
+            "command": "java -version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "pigz",
+            "command": "pigz --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "pbzip2",
+            "command": "pbzip2 --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "unzip",
+            "command": "which unzip",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "zip",
+            "command": "zip --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "python2",
+            "command": "python2 --version",
+            "force": "no",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        },
+        {
+            "name": "python3",
+            "command": "python3 --version",
+            "force": "yes",
+            "return": "null",
+            "feature": {
+                "check": "no"
+            }
+        }
+    ]
+}
